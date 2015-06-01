@@ -5862,8 +5862,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          	var jsonModificado;
 	          	var nomeFieldsAtivas;
 	          	var groupPai;
+	            var numeroFieldPai; //para achar o field que a entities faz parte
+	            var numeroEntitiePai;
 
 	          	if(item.className=="criarobjeto"){
+	          		$(elementTrAtivo).find("button")[1].click();
 	          		try{
 	          			nomeFieldSelecionada = $(elementTrAtivo).find("div.field")[0].textContent;
 					}catch(erro){
@@ -5871,7 +5874,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			nomeFieldSelecionada = "vazio";
 	          		}
 	          		me.hide();
-	          		
 	          		item.click();
 	          		if(nomeFieldSelecionada=="fields"){
 	          			$("tbody tr").each(function(index){
@@ -5879,21 +5881,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			    	console.log(index);
 	          			        //groupPai=$("tbody tr").get(index-6);
 	          			        groupPai=$($("tbody tr").get(index-6)).find("div.field")[0].textContent;
-	          			        console.log(groupPai);
+	          			    }
+	          			});
+	          		}else if(nomeFieldSelecionada=="entities"){
+	          			$("tbody tr").each(function(index){
+	          			    if($(this)[0]==elementTrAtivo){
+	          			    	console.log(index);
+	          			        groupPai=$($("tbody tr").get(index-14)).find("div.field")[0].textContent;
+	          			        numeroFieldPai =parseInt($($("tbody tr").get(18)).find("div.readonly")[0].textContent);
+	          			    }
+	          			});
+	          		}else if(nomeFieldSelecionada=="attributes"){
+	          			$("tbody tr").each(function(index){
+	          			    if($(this)[0]==elementTrAtivo){
+	          			    	console.log(index);
+	          			        groupPai=$($("tbody tr").get(index-14)).find("div.field")[0].textContent;
+	          			        numeroFieldPai =parseInt($($("tbody tr").get(18)).find("div.readonly")[0].textContent);
+	          			        console.log(numeroFieldPai);
 	          			    }
 	          			});
 	          		}else{
 	          			groupPai=null;
 	          		}
-	          		jsonModificado= adicionarEstrutura(nomeFieldSelecionada,groupPai);
+	          		jsonModificado= adicionarEstrutura(nomeFieldSelecionada,groupPai,numeroFieldPai);
 	          		if(jsonModificado!=null){
 	          			meuEditor.set(jsonModificado);
 	          			//$("button.collapsed")[0].click();
 	          		}else{
-	          			console.log("criacao invalida");
+	          			//console.log("****criacao invalida****");
 	          		}
 
-	          		console.log(elementTrAtivo);
+	          		console.log(groupPai);
 	          	}
 	          	//FALTA IMPLEMENTAR
 	          	/*
