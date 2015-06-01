@@ -5864,6 +5864,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          	var groupPai;
 	            var numeroFieldPai; //para achar o field que a entities faz parte
 	            var numeroEntitiePai;
+	            var elementosTr=[];
 
 	          	if(item.className=="criarobjeto"){
 	          		$(elementTrAtivo).find("button")[1].click();
@@ -5878,7 +5879,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          		if(nomeFieldSelecionada=="fields"){
 	          			$("tbody tr").each(function(index){
 	          			    if($(this)[0]==elementTrAtivo){
-	          			    	console.log(index);
 	          			        //groupPai=$("tbody tr").get(index-6);
 	          			        groupPai=$($("tbody tr").get(index-6)).find("div.field")[0].textContent;
 	          			    }
@@ -5886,22 +5886,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	          		}else if(nomeFieldSelecionada=="entities"){
 	          			$("tbody tr").each(function(index){
 	          			    if($(this)[0]==elementTrAtivo){
-	          			    	console.log(index);
 	          			        groupPai=$($("tbody tr").get(index-14)).find("div.field")[0].textContent;
-	          			        numeroFieldPai =parseInt($($("tbody tr").get(18)).find("div.readonly")[0].textContent);
+	          			        numeroFieldPai =parseInt($($("tbody tr").get(index-6)).find("div.readonly")[0].textContent);
 	          			    }
 	          			});
 	          		}else if(nomeFieldSelecionada=="attributes"){
+	          			var indiceMeuElementoClicado;
+
 	          			$("tbody tr").each(function(index){
-	          			    if($(this)[0]==elementTrAtivo){
-	          			    	console.log(index);
-	          			        groupPai=$($("tbody tr").get(index-14)).find("div.field")[0].textContent;
-	          			        numeroFieldPai =parseInt($($("tbody tr").get(18)).find("div.readonly")[0].textContent);
-	          			        console.log(numeroFieldPai);
-	          			    }
+	          			  	if($(this)[0]==elementTrAtivo){
+	          			  		indiceMeuElementoClicado=index;
+	          			  		console.log(indiceMeuElementoClicado);
+	          			  	}	          			
 	          			});
+	          			for (var i =indiceMeuElementoClicado; i >= indiceMeuElementoClicado-32; i--) {
+	          				try{
+	          					numeroEntitiePai=parseInt($($("tr")[26]).find("div.readonly").textContent);
+	          				}catch(err)
+	          				if($($("tr")[26]).find("div.readonly").textContent.match(/[0-9]/g)){
+
+	          				}
+	          				
+	          			};
+	          			console.log(numeroEntitiePai);
 	          		}else{
 	          			groupPai=null;
+	          			numeroFieldPai=null;
 	          		}
 	          		jsonModificado= adicionarEstrutura(nomeFieldSelecionada,groupPai,numeroFieldPai);
 	          		if(jsonModificado!=null){
@@ -5910,8 +5920,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          		}else{
 	          			//console.log("****criacao invalida****");
 	          		}
-
-	          		console.log(groupPai);
 	          	}
 	          	//FALTA IMPLEMENTAR
 	          	/*

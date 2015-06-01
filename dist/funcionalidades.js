@@ -18,7 +18,6 @@ function adicionarEstrutura(tipofield,groupPai,numeroFieldPai){
 		countFields++;
 		return jsonObj;
 	}else if(tipofield=="entities"){
-
 		jsonObj[groupPai][0].fields[numeroFieldPai].entities[
 			jsonObj[groupPai][0].fields[numeroFieldPai].entities.length+1]=entities;
 		return jsonObj;
