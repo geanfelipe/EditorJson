@@ -5896,17 +5896,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			$("tbody tr").each(function(index){
 	          			  	if($(this)[0]==elementTrAtivo){
 	          			  		indiceMeuElementoClicado=index;
-	          			  		console.log(indiceMeuElementoClicado);
+	          			  		console.log("indice TR onde foi clicado: "+indiceMeuElementoClicado);
 	          			  	}	          			
 	          			});
-	          			for (var i =indiceMeuElementoClicado; i >= indiceMeuElementoClicado-32; i--) {
+	          			for (var i =indiceMeuElementoClicado-32; i <= indiceMeuElementoClicado; i++) {
 	          				try{
-	          					numeroEntitiePai=parseInt($($("tr")[26]).find("div.readonly").textContent);
-	          				}catch(err)
-	          				if($($("tr")[26]).find("div.readonly").textContent.match(/[0-9]/g)){
-
+	          					var verificar=$($("tr")[i]).find("div.readonly")[0].textContent;
+	          					verificar = verificar[1];
+	          					console.log('verificar: '+verificar);
+	          				    if(verificar.match(/[0-9]/g)){
+	          				    	numeroEntitiePai=parseInt(verificar);
+	          				    	console.log('numero entidade pai: '+numeroEntitiePai);
+	          				    	console.log($("tr")[i]);
+	          				    	break;
+	          				    }
+	          				}catch(err){
+	          					numeroEntitiePai=null;
+	          					console.log("erro em acessar numero da entitie pai objeto");
 	          				}
-	          				
 	          			};
 	          			console.log(numeroEntitiePai);
 	          		}else{
