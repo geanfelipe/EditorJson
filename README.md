@@ -4,7 +4,7 @@ http://jsoneditoronline.org/
 
 Website: http://jsoneditoronline.org/
 Github: https://github.com/josdejong/jsoneditor
-
+Creator: https://github.com/josdejong
 
 ## Description
 
