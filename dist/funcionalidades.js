@@ -3,7 +3,7 @@ var countGroups=1;
 var countFields=1;
 
 //adicionar estrutura
-function adicionarEstrutura(tipofield,groupPai,numeroFieldPai){
+function adicionarEstrutura(tipofield,groupPai,numeroFieldPai,numeroEntitiePai){
 	if(tipofield.match(/groups*/g)){
 			var nomeGrupo = "groups"+countGroups;
 			jsonObj[nomeGrupo]=groups;
@@ -21,6 +21,8 @@ function adicionarEstrutura(tipofield,groupPai,numeroFieldPai){
 		jsonObj[groupPai][0].fields[numeroFieldPai].entities[
 			jsonObj[groupPai][0].fields[numeroFieldPai].entities.length+1]=entities;
 		return jsonObj;
+	}else if(tipofield=="attributes"){
+		
 	}
 	else{
 		return null;

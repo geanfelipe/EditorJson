@@ -5894,7 +5894,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			var indiceMeuElementoClicado;
 	          			var indiceMeuButao;
 	          			var indiceButoesSuperiores=[];
-	          			var butaoEntitie;
+	          			var numeroEntitiePai;
 	          			$("tbody tr").each(function(index){
 	          			  	if($(this)[0]==elementTrAtivo){
 	          			  		indiceMeuElementoClicado=index;
@@ -5902,6 +5902,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			  	}	          			
 	          			});
 
+	          			//DEFINICAO DO INDICE DO atributte
 	          			var meuButao = $($('tr')[indiceMeuElementoClicado]).find('button')[1]
 	          			$("button").each(function(index){
 
@@ -5918,14 +5919,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	          				}
 	          				console.log('indice meu butao  '+indiceMeuButao);
 	          			});
-	          			var index = indiceButoesSuperiores[indiceButoesSuperiores.length-4];
-	          			butaoEntitie = $('button').get(index);
-	          			console.log('butao entitie ');console.log(butaoEntitie);
+	          			console.log(indiceButoesSuperiores);
+	          			
+	          			var indexGroupPai = indiceButoesSuperiores[indiceButoesSuperiores.length-10];
+	          			groupPai =$($('button').get(indexGroupPai).parentNode.parentNode).find('div.field')[0].textContent;
+
+	          			var indexFieldPai = indiceButoesSuperiores[indiceButoesSuperiores.length-7];
+	          			numeroFieldPai = parseInt($('button').get(indexFieldPai).parentNode.parentNode.textContent[0]);
+
+	          			var indexEntitie = indiceButoesSuperiores[indiceButoesSuperiores.length-4];
+	          			numeroEntitiePai = parseInt($('button').get(indexEntitie).parentNode.parentNode.textContent[0]);
+
+	          			console.log('field pertecente '+numeroFieldPai);
+
 	          		}else{
-	          			grou=null;
+	          			groupPai=null;
 	          			numeroFieldPai=null;
-	          		}
-	          		jsonModificado= adicionarEstrutura(nomeFieldSelecionada,groupPai,numeroFieldPai);
+	          			numeroEntitiePai=null;
+	          		}	
+	          		jsonModificado= adicionarEstrutura(nomeFieldSelecionada,groupPai,numeroFieldPai,numeroEntitiePai);
 	          		if(jsonModificado!=null){
 	          			meuEditor.set(jsonModificado);
 	          			//$("button.collapsed")[0].click();
