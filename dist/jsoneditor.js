@@ -5876,7 +5876,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			nomeFieldSelecionada = "vazio";
 	          		}
 	          		me.hide();
-	          		item.click();
+	          		//item.click();
 	          		if(nomeFieldSelecionada=="fields"){
 	          			$("tbody tr").each(function(index){
 	          			    if($(this)[0]==elementTrAtivo){
@@ -5902,13 +5902,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			  	}	          			
 	          			});
 	          			//contar quantos butoes .expanded e .collapsed existem acima desse tr
-	          			//ps:contagem insere a própria tr em questao
-	          			for (var i =2; i <= indiceMeuElementoClicado; i++) {
-	          				if ($($("tr")[i]).find("button.expanded")[0] /*|| $($("tr")[i]).find("button.collapsed")[0]*/){
+	          			for (var i =2; i < indiceMeuElementoClicado; i++) {
 	          					numeroDeButoes++;
-	          				}
+	          					try{
+	          					var butao = $($("tr")[i]).find("button")[1];
+	          					console.log($("tr")[i]);
+	          					console.log('classe do butao: '+butao.className);
+	          					}catch(err){
+	          						console.log('***erro****'+i);
+	          						console.log($("tr").get(i));
+	          					}
 	          			};
-	          			console.log(numeroEntitiePai);
 	          			console.log("numero de butoes "+numeroDeButoes);
 	          		}else{
 	          			groupPai=null;
