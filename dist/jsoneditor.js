@@ -5865,6 +5865,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var numeroFieldPai; //para achar o field que a entities faz parte
 	            var numeroEntitiePai;
 	            var elementosTr=[];
+	            var numeroDeButoes;
 
 	          	if(item.className=="criarobjeto"){
 	          		$(elementTrAtivo).find("button")[1].click();
@@ -5892,6 +5893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			});
 	          		}else if(nomeFieldSelecionada=="attributes"){
 	          			var indiceMeuElementoClicado;
+	          			numeroDeButoes=0;
 
 	          			$("tbody tr").each(function(index){
 	          			  	if($(this)[0]==elementTrAtivo){
@@ -5899,23 +5901,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			  		console.log("indice TR onde foi clicado: "+indiceMeuElementoClicado);
 	          			  	}	          			
 	          			});
-	          			for (var i =indiceMeuElementoClicado-32; i <= indiceMeuElementoClicado; i++) {
-	          				try{
-	          					var verificar=$($("tr")[i]).find("div.readonly")[0].textContent;
-	          					verificar = verificar[1];
-	          					console.log('verificar: '+verificar);
-	          				    if(verificar.match(/[0-9]/g)){
-	          				    	numeroEntitiePai=parseInt(verificar);
-	          				    	console.log('numero entidade pai: '+numeroEntitiePai);
-	          				    	console.log($("tr")[i]);
-	          				    	break;
-	          				    }
-	          				}catch(err){
-	          					numeroEntitiePai=null;
-	          					console.log("erro em acessar numero da entitie pai objeto");
+	          			//contar quantos butoes .expanded e .collapsed existem acima desse tr
+	          			//ps:contagem insere a própria tr em questao
+	          			for (var i =2; i <= indiceMeuElementoClicado; i++) {
+	          				if ($($("tr")[i]).find("button.expanded")[0] /*|| $($("tr")[i]).find("button.collapsed")[0]*/){
+	          					numeroDeButoes++;
 	          				}
 	          			};
 	          			console.log(numeroEntitiePai);
+	          			console.log("numero de butoes "+numeroDeButoes);
 	          		}else{
 	          			groupPai=null;
 	          			numeroFieldPai=null;
