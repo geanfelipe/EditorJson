@@ -5865,7 +5865,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var numeroFieldPai; //para achar o field que a entities faz parte
 	            var numeroEntitiePai;
 	            var elementosTr=[];
-	            var numeroDeButoes;
 
 	          	if(item.className=="criarobjeto"){
 	          		$(elementTrAtivo).find("button")[1].click();
@@ -5893,29 +5892,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			});
 	          		}else if(nomeFieldSelecionada=="attributes"){
 	          			var indiceMeuElementoClicado;
-	          			numeroDeButoes=0;
-
+	          			var indiceMeuButao;
+	          			var indiceButoesSuperiores=[];
+	          			var butaoEntitie;
 	          			$("tbody tr").each(function(index){
 	          			  	if($(this)[0]==elementTrAtivo){
 	          			  		indiceMeuElementoClicado=index;
 	          			  		console.log("indice TR onde foi clicado: "+indiceMeuElementoClicado);
 	          			  	}	          			
 	          			});
-	          			//contar quantos butoes .expanded e .collapsed existem acima desse tr
-	          			for (var i =2; i < indiceMeuElementoClicado; i++) {
-	          					numeroDeButoes++;
-	          					try{
-	          					var butao = $($("tr")[i]).find("button")[1];
-	          					console.log($("tr")[i]);
-	          					console.log('classe do butao: '+butao.className);
-	          					}catch(err){
-	          						console.log('***erro****'+i);
-	          						console.log($("tr").get(i));
+
+	          			var meuButao = $($('tr')[indiceMeuElementoClicado]).find('button')[1]
+	          			$("button").each(function(index){
+
+	          				if ($(this)[0]==meuButao){
+	          					indiceMeuButao= index;
+	          					return ;
+	          				}
+	          			});
+	          			$("button").each(function(index){
+	          				if(index<indiceMeuButao){
+	          					if($(this)[0].className=='expanded' || $(this)[0].className=='collapsed'){
+	          						indiceButoesSuperiores.push(index);
 	          					}
-	          			};
-	          			console.log("numero de butoes "+numeroDeButoes);
+	          				}
+	          				console.log('indice meu butao  '+indiceMeuButao);
+	          			});
+	          			var index = indiceButoesSuperiores[indiceButoesSuperiores.length-4];
+	          			butaoEntitie = $('button').get(index);
+	          			console.log('butao entitie ');console.log(butaoEntitie);
 	          		}else{
-	          			groupPai=null;
+	          			grou=null;
 	          			numeroFieldPai=null;
 	          		}
 	          		jsonModificado= adicionarEstrutura(nomeFieldSelecionada,groupPai,numeroFieldPai);
