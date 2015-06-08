@@ -5921,16 +5921,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			});
 	          			console.log(indiceButoesSuperiores);
 	          			
-	          			var indexGroupPai = indiceButoesSuperiores[indiceButoesSuperiores.length-10];
-	          			groupPai =$($('button').get(indexGroupPai).parentNode.parentNode).find('div.field')[0].textContent;
-
-	          			var indexFieldPai = indiceButoesSuperiores[indiceButoesSuperiores.length-7];
-	          			numeroFieldPai = parseInt($('button').get(indexFieldPai).parentNode.parentNode.textContent[0]);
-
 	          			var indexEntitie = indiceButoesSuperiores[indiceButoesSuperiores.length-4];
 	          			numeroEntitiePai = parseInt($('button').get(indexEntitie).parentNode.parentNode.textContent[0]);
+	          			if(isNaN(numeroEntitiePai)){
+	          				indexEntitie = indiceButoesSuperiores[indiceButoesSuperiores.length-5];
+	          				numeroEntitiePai = parseInt($('button').get(indexEntitie).parentNode.parentNode.textContent[0]);
+	          			}
 
-	          			console.log('field pertecente '+numeroFieldPai);
+	          			
+	          			var indexFieldPai = indiceButoesSuperiores[indiceButoesSuperiores.length-7];
+	          			numeroFieldPai = parseInt($('button').get(indexFieldPai).parentNode.parentNode.textContent[0]);
+	          			if(isNaN(numeroFieldPai)){
+	          				indexFieldPai = indiceButoesSuperiores[indiceButoesSuperiores.length-8];
+	          				numeroFieldPai = parseInt($('button').get(indexFieldPai).parentNode.parentNode.textContent[0]);
+	          			}
+
+//	          			var indexGroupPai = indiceButoesSuperiores[indiceButoesSuperiores.length-10];
+//	          			groupPai =$($('button').get(indexGroupPai).parentNode.parentNode).find('div.field')[0].textContent;
+
+	          			console.log('numeroField pertecente '+numeroFieldPai);
+	          			console.log('numeroEntitiePai pertecente '+numeroEntitiePai);
 
 	          		}else{
 	          			groupPai=null;
