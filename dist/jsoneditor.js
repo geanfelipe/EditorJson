@@ -5887,6 +5887,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          			$("tbody tr").each(function(index){
 	          			    if($(this)[0]==elementTrAtivo){
 	          			        groupPai=$($("tbody tr").get(index-14)).find("div.field")[0].textContent;
+	          			        console.log('indice do groupPai: '+ index-14) ;console.log($("tbody tr").get(index-14));
 	          			        numeroFieldPai =parseInt($($("tbody tr").get(index-6)).find("div.readonly")[0].textContent);
 	          			    }
 	          			});
@@ -5928,7 +5929,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          				numeroEntitiePai = parseInt($('button').get(indexEntitie).parentNode.parentNode.textContent[0]);
 	          			}
 
-	          			
 	          			var indexFieldPai = indiceButoesSuperiores[indiceButoesSuperiores.length-7];
 	          			numeroFieldPai = parseInt($('button').get(indexFieldPai).parentNode.parentNode.textContent[0]);
 	          			if(isNaN(numeroFieldPai)){
